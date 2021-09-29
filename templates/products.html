@@ -1,0 +1,45 @@
+{%load static %}
+<title>all-MobilEra</title>
+{%include 'base.html'%}
+
+<body class="main-layout ">
+    {%include "hed.html"%}
+
+    <div class="brand-bg">
+        <div style="margin-bottom:10px">
+            {%include "searchbar.html"%}
+        </div>
+        <div class="container">
+           <div class="row">
+                {% for post in posts %}
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 margin">
+                        <div class="brand_box" style="text-align: center;">
+                            <a href="{% url 'detail' post.id %}"> 
+                              <img src="{{ post.image.url }}" alt="img/phones" />
+                            </a>
+                            <a href="{% url 'detail' post.id %}">
+                                {% if post.discount_price %}
+                                   <h5 class="red" style="text-decoration: line-through;">  {{post.price}} ₾ </h5>
+                                   <h5 class="red" > ფასდაკლება: -{{ post.discount_price }}% </h5>
+                                   <h6 class="red" > {{post.finalprice}}₾ </h6>
+                                {% else %}
+                                   <h3> {{ post.price }} ₾ </h3>
+                                {% endif %}
+                            
+                                <span><h1 href="{% url 'detail' post.id %}" >{{ post.title }}</h1></span>
+                            </a>
+                        </div>
+                    </div>
+                {%endfor%}
+               
+            </div>
+        </div>
+    </div>
+    {%include "pag.html"%}
+    <footer>
+       {%include "footer.html"%}
+    </footer>
+        
+
+</body>
+</html>

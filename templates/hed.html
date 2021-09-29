@@ -1,0 +1,51 @@
+{%load static%}
+<div style="padding-bottom:30px; " >
+
+    <div  >
+        <div>
+            <nav class="navbar navbar-expand-lg navbar-light bg-white">
+                <a class="navbar-brand" href="{% url 'home'%}"><img src="{% static 'imag/mobilera.png' %}" alt="#"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'home'%}" >Home <span class="sr-only"></span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'discount_page'%}">ფასდაკლებები</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'mobiles'%}">მობილურები</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'accessories'%}">აქსესუარები</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'contact'%}">Contact Us</a>
+                        </li>
+                    </ul>
+                    <span class="navbar-text">
+                        {%include "searchbar.html"%}
+                    </span>
+                </div>
+            </nav>
+            <div class="col-md-6 offset-md-6">
+                <div class="location_icon_bottum">
+                    <ul style="margin-bottom:20px">
+                        <a href="tel:555319498"> 
+                            <li ><img src="{% static 'imag/call.png' %}" />(+995)555319498</li>
+                        </a>
+                        <a href="mailto:begadze.zura@gmail.com">
+                            <li><img src="{% static 'imag/email.png'%}" />begadze.zura@gmail.com</li>
+                        </a>
+                        <a target="_blank" href = "https://www.google.com/maps/place/Davit+Agmashenebeli%2FKote+Marjanishvili+Street,+89%2F24+%E1%83%93%E1%83%90%E1%83%95%E1%83%98%E1%83%97+%E1%83%90%E1%83%A6%E1%83%9B%E1%83%90%E1%83%A8%E1%83%94%E1%83%9C%E1%83%94%E1%83%91%E1%83%94%E1%83%9A%E1%83%98%E1%83%A1+%E1%83%92%E1%83%90%E1%83%9B%E1%83%96%E1%83%98%E1%83%A0%E1%83%98,+%E1%83%97%E1%83%91%E1%83%98%E1%83%9A%E1%83%98%E1%83%A1%E1%83%98/@41.7101396,44.7983262,19z/data=!4m8!1m2!2m1!1z4YOb4YOQ4YOg4YOv4YOQ4YOc4YOY4YOo4YOV4YOY4YOa4YOY4YOhIOGDm-GDlOGDouGDoOGDnQ!3m4!1s0x40440d27ccd87cc7:0x6e8a577d28fc4e68!8m2!3d41.7105875!4d44.7982434">
+                            <li ><img src="{% static 'imag/loc.png'%}" />Location</li>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

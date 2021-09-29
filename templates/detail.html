@@ -1,0 +1,338 @@
+{%load static %}
+<title>{{post}}-MobilEra</title>
+<link rel = "icon" href = "static/large.png" type = "image/x-icon">
+{%include 'base.html'%}
+
+
+<link rel="stylesheet"  href="{% static 'css/detail.css' %}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: right;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+#content-wrapper{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.column{
+	width: 600px;
+	padding: 10px;
+
+}
+
+#featured{
+	max-width: 550px;
+	max-height: 550px;
+	object-fit: cover;
+	cursor: pointer;
+
+}
+
+.thumbnail{
+	object-fit: cover;
+	max-width: 180px;
+	max-height: 100px;
+	cursor: pointer;
+	opacity: 0.5;
+	margin: 5px;
+	}
+
+.thumbnail:hover{
+	opacity:1;
+}
+
+.active{
+	opacity: 1;
+}
+
+#slide-wrapper{
+	max-width: 500px;
+	display: flex;
+	min-height: 100px;
+	align-items: center;
+}
+
+#slider{
+	width: 440px;
+	display: flex;
+	flex-wrap: nowrap;
+	overflow-x: auto;
+
+}
+
+#slider::-webkit-scrollbar {
+		width: 8px;
+
+}
+
+#slider::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+
+}
+ 
+#slider::-webkit-scrollbar-thumb {
+  background-color: #dede2e;
+  outline: 1px solid slategrey;
+   border-radius: 100px;
+
+}
+
+#slider::-webkit-scrollbar-thumb:hover{
+    background-color: #18b5ce;
+}
+
+.arrow{
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+	transition: .3s;
+}
+
+.arrow:hover{
+	opacity: .5;
+	width: 35px;
+	height: 35px;
+}
+
+</style>
+
+<body class="main-layout" >
+    <div style="background-color:#FFFFFF">
+        {%include 'hed.html'%}
+    </div>
+    
+    <div class="brand_color" >
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="titlepage">
+                        <h2>დეტალური დათვალიერება:</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <div id="content-wrapper">
+		<div class="column">
+            {%for i in pos%}
+			    <img id="featured" src="{{i.image.url}}" alt="{{i.title}}">
+            {%endfor%}
+
+			<div id="slide-wrapper" >
+				<img id="slideLeft" class="arrow" src="{%static 'imag/arrow-left.png'%}">
+
+				<div id="slider" style="overflow: hidden">
+                    {%for p in photos%}
+					    <img class="thumbnail active" src="{{p.images.url}}" alt="i.title">
+					{%endfor%}
+				</div>
+
+				<img id="slideRight" class="arrow" src="{%static 'imag/arrow-right.png'%}">
+			</div>
+		</div>
+
+		<div class="column">
+            {%for i in pos%}
+			<h1>{{i.title}}</h1>
+			<hr>
+			<h3>
+               {%if i.discount_price%}
+                   <h1>ფასი : {{i.finalprice}} ₾</h1>
+                {%else%}
+                   <h1>ფასი : {{i.price}} ₾ </h1>
+                {%endif%}
+
+            </h3>
+
+
+			<p><li>შესახებ : {{i.description}}</li></p>
+            
+            <h4> მარაგშია : {{i.supplies}}</h4>
+            {%endfor%}
+            <a>
+               <img  src="{%static 'imag/orange.jpg'%}" style="width:300px;height:300;" alt= "orangephone">
+               
+            </a> 
+            
+		</div>
+
+	</div  
+
+    
+    <div style="margin: auto; width: 80%; background-color:#E1DFDF">
+        <div class="box" >
+            <div  style="margin: auto; width: 80%; padding-bottom: 25px;" >
+                <div class="brand">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="titlepage">
+                                    <h2>მონაცემები</h2>
+                                </div>
+                            </div>
+                       </div>
+                    </div>
+                </div>
+
+                {%for p in pos%}
+                    {%if p.label == "C"%}
+                        <table>
+                            <tr>
+                               <th>Company</th>
+                               <th>Contact</th>
+                            </tr>
+                            <tr>
+                                <td>{{p.model}}</td>
+                                <td> მწარმოებელი</td>
+                            </tr>
+                            <tr>
+                                <td>{{p.date}}</td>
+                                <td>გამოშვების თარიღი</td>
+                            </tr>
+                            <tr>
+                                <td>{{p.screen}}</td>
+                                <td>ეკრანის გაფართოება</td>
+                            </tr>
+                            <tr>
+                                <td>{{p.size}}</td>
+                                <td>ტელეფონის ზომა</td> 
+                            </tr>
+                            <tr>
+                                <td>{{p.simcard}}</td>
+                                <td>SIM ბარათების რაოდენობა</td>    
+                            </tr>
+                            <tr>
+                                <td>{{p.systeminfo}}</td>
+                                <td>ოპერაციული სისტემა</td>    
+                            </tr>
+                            <tr>
+                                <td>{{p.shida}} GB</td>
+                                <td>შიდა მეხსიერება:</td>    
+                            </tr>
+                            <tr>
+                                <td>{{p.memory}} GB}</td>
+                                <td>ოპერატიული მეხსიერება</td>    
+                            </tr>
+                            <tr>
+                                <td>{{p.maincamera}}</td>
+                                <td>მთავარი კამერა</td>    
+                            </tr>
+                            <tr>
+                                <td>{{p.frontcamera}}</td>
+                                <td>Selfie კამერა</td>    
+                            </tr>
+                            <tr>
+                                <td>{{p.batary}} mH/a</td>
+                                <td>კვების ელემენტი</td>    
+                            </tr>
+                       </table>
+                    {%else%}
+                        <ul class="w3-ul" >
+                            <li>მოდელი : {{p.title}}</li>
+                            <li>შესახებ : {{p.description}}</li>
+                        </ul>
+                    {%endif%}
+               {%endfor%}   
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="brand">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="titlepage">
+                        <h2>მსაგვსი პროდუქტები:</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="brand-bg">
+        <div class="container">
+                
+            <div class="row">
+       
+                {% for  j in releated %}
+                    {%for i in pos%}
+                       {%if j.model == i.model%}
+                           <div class="card">
+                               <a href="{% url 'detail' j.id %}"> 
+                                  <img src="{{ j.image.url }}" alt="releated items" style="width:100%">
+                                </a>
+                                <a href="{% url 'detail' j.id %}">
+                                  {% if j.discount_price %}
+                                    <p class="price" style="text-decoration: line-through;">  {{j.price}} ₾ </p>
+                                    <h6 class="price" > {{j.finalprice}}₾ </h6>
+                                  {% else %}
+                                    <p class="price"> {{ j.price }} ₾ </p>
+                                  {% endif %}
+                            
+                                  <span><h4 href="{% url 'detail' post.id %}" >{{ j.title }}</h4></span>
+                                </a>
+                            </div>                            
+                        {%endif%}
+                    {%endfor%}
+               {%endfor%}
+            </div>
+        </div>
+    </div>
+
+        
+</body>
+
+{%include "footer.html"%}
+
+
+
+<script type="text/javascript">
+
+	let thumbnails = document.getElementsByClassName('thumbnail')
+    let activeImages = document.getElementsByClassName('active')
+	for (var i=0; i < thumbnails.length; i++){
+		thumbnails[i].addEventListener('mouseover', function(){
+     		console.log(activeImages)
+				
+			if (activeImages.length > 0){
+				activeImages[0].classList.remove('active')
+			}
+				
+
+			this.classList.add('active')
+			document.getElementById('featured').src = this.src
+		})
+	}
+
+
+	let buttonRight = document.getElementById('slideRight');
+	let buttonLeft = document.getElementById('slideLeft');
+
+	buttonLeft.addEventListener('click', function(){
+		document.getElementById('slider').scrollLeft -= 180
+	})
+
+	buttonRight.addEventListener('click', function(){
+		document.getElementById('slider').scrollLeft += 180
+	})
+</script>
+
+</html>
